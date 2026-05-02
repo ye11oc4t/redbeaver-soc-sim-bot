@@ -1,7 +1,29 @@
-# redbeaver — Active-Safe SOC Validation Bot
+<div align="center">
 
-`redbeaver`는 Blue Team/SOC 구축 검증을 위한 **active-safe marker bot**입니다.
 
+<img width="360" height="360" alt="image" src="https://github.com/user-attachments/assets/11b134a5-683b-427e-8afb-878b71a5e562" />
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Team](https://img.shields.io/badge/team-Baby%20Beavers-orange)
+
+</div>
+
+<div align="center">
+
+# <span style="color:#EA3323">redbeaver</span> 🦫
+Active-Safe SOC Validation Bot
+
+`redbeaver`는 Blue Team/SOC 구축 검증을 위해 공격자 행위의 흐름을 모사하되, <br>
+실제 시스템 피해 없이 관측 가능한 마커만 남기는 봇입니다.
+
+</div>
+
+
+
+---
 목표는 실제 침투·탈취·파괴가 아니라, 공격 시나리오와 유사한 **관측 가능한 흔적**을 안전하게 남겨서 다음 파이프라인을 검증하는 것입니다.
 
 - Cloudflare / CloudFront / WAF / ALB 로그
