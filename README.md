@@ -79,17 +79,17 @@ python run.py --scenario all
 
 ## Discord Notification
 
-Set this in `.env`.
+`.env`에 다음 값을 설정합니다.
 
 ```env
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 ```
 
-Then every scenario emits:
+설정 후 각 시나리오 실행 시 다음 알림이 전송됩니다.
 
-- scenario start
-- scenario done/error
-- run summary
+- 시나리오 시작
+- 시나리오 완료/오류
+- 전체 실행 요약
 
 ## External Edge/WAF Test
 
@@ -106,7 +106,7 @@ python run.py --scenario credential_stuffing_marker
 python run.py --scenario webshell_marker
 ```
 
-For auth/upload marker, explicitly enable the gates:
+auth/upload marker는 별도 gate를 명시적으로 활성화해야 합니다.
 
 ```env
 ENABLE_AUTH_MARKER=true
@@ -117,7 +117,7 @@ UPLOAD_ENDPOINT=/api/upload
 
 ## Private EC2 Egress Test
 
-Run this on an app EC2 behind NAT.
+NAT 뒤에 있는 app EC2에서 실행합니다.
 
 ```env
 ENABLE_NETWORK=true
@@ -132,8 +132,7 @@ python run.py --scenario c2_marker
 
 ## RDS/S3 Marker Test
 
-Run this on an app EC2 allowed to reach RDS.
-
+RDS에 접근 가능한 app EC2에서 실행합니다.
 ```env
 ENABLE_DB_READONLY=true
 ENABLE_AWS_READONLY=true
@@ -153,17 +152,17 @@ MARKER_PREFIX=redbeaver/markers
 python run.py --scenario db_stealer_marker
 ```
 
-The DB query is only:
+DB 쿼리는 다음 한 줄만 실행합니다.
 
 ```sql
 SELECT 1 AS redbeaver_marker;
 ```
 
-No table dump is performed.
+테이블 dump는 수행하지 않습니다.
 
 ## Pacu Integration
 
-Pacu is optional and read-only allowlisted.
+Pacu는 선택 기능이며, read-only allowlist에 포함된 모듈만 실행됩니다.
 
 ```env
 ENABLE_AWS_READONLY=true
@@ -173,7 +172,7 @@ PACU_SESSION_NAME=redbeaver-safe
 PACU_MODULES=aws__enum_account,iam__enum_permissions,ec2__enum
 ```
 
-Allowed modules:
+허용된 모듈:
 
 ```text
 aws__enum_account
@@ -186,7 +185,7 @@ cloudtrail__enum
 guardduty__list_findings
 ```
 
-Denied by design:
+설계상 거부되는 행위:
 
 ```text
 privesc
@@ -207,13 +206,13 @@ python run.py --scenario github_secret_marker
 
 ## Output
 
-All scenario events are saved under:
+모든 시나리오 이벤트는 다음 경로에 저장됩니다.
 
 ```text
 results/*.json
 ```
 
-Each event includes:
+각 이벤트에는 다음 필드가 포함됩니다.
 
 ```json
 {
@@ -225,8 +224,7 @@ Each event includes:
 }
 ```
 
-HTTP markers include headers:
-
+HTTP marker에는 다음 헤더가 포함됩니다.
 ```text
 X-Redbeaver-Scenario
 X-Redbeaver-Run-Id
@@ -234,4 +232,4 @@ X-Redbeaver-Trace-Id
 X-Redbeaver-Mode: active-safe
 ```
 
-Use these fields for WAF/ALB/Wazuh/CloudWatch filtering.
+위 필드는 WAF/ALB/Wazuh/CloudWatch 필터링에 사용할 수 있습니다.
